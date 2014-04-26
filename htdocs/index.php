@@ -18,7 +18,7 @@
 		echo 'welcome Order Manager '.$_SESSION['NAME'].'<br>';
 		echo '<a href="logout.php">Logout</a><br>';
 		echo '<a href="analyzeProduct.php">Analyze Product</a><br>';
-		echo '<a href="procureProduct.php">Procure Produce</a><br>';
+		echo '<a href="procureProduct.php">Procure Product</a><br>';
 		echo '<a href="clearOrders.php">Clear Orders</a><br>';
 	}
 	
@@ -44,7 +44,7 @@
 	}
 	
 	function printLoginForm() {
-		echo'	<form action="welcome.php" method="post">
+		echo'	<form action="validateLogin.php" method="post">
 					Username: <input type="text" name="username"><br>
 					Password: <input type="password" name="password"><br>
 					<input type="submit" value="Submit">
@@ -52,4 +52,4 @@
 				<a href="register.php">Register</a>';	
 	}
 	
-	?>
+	        
