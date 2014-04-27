@@ -8,21 +8,23 @@
 					AND PASSWORD = '".$_POST["password"]."'";
 
 					
-	tryLoginAs('CUSTOMER', $query, $conn);	
-	
-	$query = 	"SELECT *
-				FROM EMPLOYEE 
-				WHERE USERID = '".$_POST["username"]."' 
-					AND PASSWORD = '".$_POST["password"]."'";
-					
-	tryLoginAs('EMPLOYEE', $query, $conn);	
-
-	$_SESSION['user'] = 'error';
-	oci_close($conn);	
+	 if (tryLoginAs('CUSTOMER', $query, $conn)) {
+            header('Location: index.php');
+            exit;
+         } else if (tryLoginAs('EMPLOYEE', $query, $conn)) {
+             
+         } else {
+             $_SESSION['user'] = 'error';
+         }
 	header('Location: index.php');
 	exit;
 	
-	function tryLoginAs($userStr, $query, $conn) {
+	function tryLoginAs($userStr) {
+                $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
+                $query = "SELECT *
+				FROM ".$userStr. 
+				" WHERE USERID = '".$_POST["username"]."' 
+					AND PASSWORD = '".$_POST["password"]."'";
 		$stid=oci_parse($conn, $query);
 		oci_execute($stid);
 
@@ -30,9 +32,10 @@
 			$_SESSION['user'] = $userStr;
 			addFieldsToSession($stid, $row);	
 			oci_close($conn);	
-			header('Location: index.php');
-			exit;
+			return true;
+                        
 		}
+                return false;
 		
 	}
 
@@ -43,4 +46,4 @@
 				$_SESSION[oci_field_name($stid, $i)] = $row[oci_field_name($stid, $i)];
 			}	
 		}
- ?> 
+ 
