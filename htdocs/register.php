@@ -6,13 +6,13 @@ if ($_SESSION["success"] == "false") {
 }
     ?>
 
-<form id="registration" action="submitRegistration.php" method="post">
-	*Full Name: 		<input type="text" name="name" maxlength="20"><br>
-	*Address:		<input type="text" name="address" maxlength="30"><br>
-	*Home Phone: 	<input type="text" name="homePhone" maxlength="12"><br>
-	*Mobile Phone: 	<input type="text" name="mobilePhone" maxlength="12"><br>
-	*Email: 			<input type="text" name="email" maxlength="25"><br>
-	*Country: 		<select name="country">
+<form id="registration" onsubmit ="return validateForm()" action="submitRegistration.php" method="post">
+    *Full Name: 		<input type="text" name="name" maxlength="20" required><br>
+    *Address:		<input type="text" name="address" maxlength="30" required><br>
+    *Home Phone: 	<input type="text" name="homePhone" maxlength="12" required><br>
+        *Mobile Phone: 	<input type="text" name="mobilePhone" maxlength="12" required><br>
+	*Email: 			<input type="text" name="email" maxlength="25" required><br>
+        *Country: 		<select name="country" required>
 						<?php 
 						$conn = oci_connect('SYSTEM', 'password', '//localhost/project');
 						$stid=oci_parse($conn, "SELECT * FROM COUNTRY");
@@ -23,30 +23,24 @@ if ($_SESSION["success"] == "false") {
 						oci_close($conn);
 						?>
 					</select><br>
-	*UserID: 			<input type="text" name="userID" maxlength="15"><br>
-	*Password: 			<input type="password" name="password" id="password" maxlength="15"><br>
+	*UserID: 			<input type="text" name="userID" maxlength="15" required><br>
+	*Password: 			<input type="password" name="password" id="password" required maxlength="15"><br>
 	*Confirm Password: 	<input type="password" name="confirmPassword" id="confirmPassword" maxlength="15"><br>
-						<span name="passwordMessage" id="passwordMessage"></span><br>
-						<INPUT TYPE="button" NAME="button" Value="Submit" onClick="submitRegistration()">
+						<span name="passwordMessage" required id="passwordMessage"></span><br>
+						<!--<INPUT TYPE="button" NAME="button" Value="Submit" onClick="submitRegistration()">-->
+                                                <input type="submit" value="Submit">
                                                 <span> * Indicates a required field </span>	
 	<script>
-		function submitRegistration() {
-                    requiredFields = ["name", "address", "homePhone", "mobilePhone", "email", "country", "userID"]
-			if (document.getElementById("password").value != document.getElementById("confirmPassword").value)  {
-				document.getElementById("passwordMessage").innerHTML = "Passwords do not match!";
-			} else if (document.getElementById("password").value == "") {
-				document.getElementById("passwordMessage").innerHTML = "Please enter a password!";
-			} else {
-                            
-                            for (field in requiredFields) {
-                                if (document.forms["registration"].elements[field].value == "") {
-                                    alert("Please complete all required fields!");
-                                    return;
-                                }
-                             
-                            }
-				document.getElementById("registration").submit();
-			}
+		function validateForm() {
+                    if (document.getElementById("password").value != document.getElementById("confirmPassword").value)  {
+			document.getElementById("passwordMessage").innerHTML = "Passwords do not match!";
+                        return false;
+                    } else if (document.getElementById("password").value == "") {
+                        document.getElementById("passwordMessage").innerHTML = "Please enter a password!";
+                        return false;
+                    }
+
+                    return true;
 		}
 	</script>
 	
