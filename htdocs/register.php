@@ -1,4 +1,5 @@
 <?php session_start(); 
+    include './utilityFunctions.php';
 if ($_SESSION["success"] == "false") {
     echo 'UserID exists! Please return home to login or choose a different UserID<br>';
     session_destroy();
@@ -12,17 +13,7 @@ if ($_SESSION["success"] == "false") {
     *Home Phone: 	<input type="text" name="homePhone" maxlength="12" required><br>
         *Mobile Phone: 	<input type="text" name="mobilePhone" maxlength="12" required><br>
 	*Email: 			<input type="text" name="email" maxlength="25" required><br>
-        *Country: 		<select name="country" required>
-						<?php 
-						$conn = oci_connect('SYSTEM', 'password', '//localhost/project');
-						$stid=oci_parse($conn, "SELECT * FROM COUNTRY");
-						oci_execute($stid);
-						while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
-							echo "<option value=".$row['COUNTRYID'].">".$row['COUNTRYNAME']."</option>";
-						}
-						oci_close($conn);
-						?>
-					</select><br>
+        *Country: 		<?php getCountries();?><br>
 	*UserID: 			<input type="text" name="userID" maxlength="15" required><br>
 	*Password: 			<input type="password" name="password" id="password" required maxlength="15"><br>
 	*Confirm Password: 	<input type="password" name="confirmPassword" id="confirmPassword" maxlength="15"><br>

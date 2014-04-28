@@ -1,5 +1,24 @@
 <?php
 
+function getCountries($selected=NULL) {
+    echo '<select name="country" required>';
+ 
+        
+    $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
+    $stid=oci_parse($conn, "SELECT * FROM COUNTRY");
+    oci_execute($stid);
+    while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+        if ($row['COUNTRYID'] == $selected) {
+            echo "<option value=".$row['COUNTRYID']." selected>".$row['COUNTRYNAME']."</option>";
+        } else {
+            echo "<option value=".$row['COUNTRYID'].">".$row['COUNTRYNAME']."</option>";
+        }
+    }
+    oci_close($conn);
+    echo '</select>';
+
+}
+
 function tryLoginAs($userStr, $username, $password) {
                 $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
                 $query = "SELECT *
