@@ -7,6 +7,7 @@
 	$result = oci_execute($stid);
         if (oci_fetch_array($stid)) {
             $_SESSION["success"] = "false";
+            oci_close($conn);
             header('Location: register.php');
             exit;
         }
@@ -25,7 +26,6 @@
         $stid=oci_parse($conn, $query);
 	$result = oci_execute($stid);
         
-        echo $result;
         oci_close($conn);	
         header('Location: registrationSuccess.html');
 	exit;
