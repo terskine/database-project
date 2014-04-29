@@ -1,55 +1,74 @@
-<?php session_start(); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Shop Online</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE]>
+<link href="style/style-ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+<body>
+<center>
+<div class="wrapper">
+<div class="logo"> Shop<strong>Online</strong></div>
+<div class="menu">
+<ul class="solidblockmenu">
+<li><a href="index.php">Home</a></li>
+<li><a href="http://www.free-css.com/">Categories</a></li>
+<li><a href="http://www.free-css.com/">User Guide</a></li>
+<li><a href="http://www.free-css.com/">Reviews</a></li>
+<li><a href="http://www.free-css.com/">Hot Deals</a></li>
+<li><a href="http://www.free-css.com/">FAQ's</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+</div>
+
+<div class="hot-search">
+</div>
+<div class="body-wrapper">
+<div class="body-right">
+
+
+</div>
+<div class="body-middle">
 
 <?php 
-	if ($_SESSION['user'] == 'error') {
-		echo 'ERROR LOGGING IN. Please try again';
-		printLoginForm();
-	}
-	else if ($_SESSION['user'] == 'CUSTOMER') {
-		echo 'welcome customer '.$_SESSION['NAME'].'<br>';
-		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="placeOrder.php">Place Order</a><br>';
-		echo '<a href="enrollCustomer.php">Enroll Customer</a><br>';
-		echo '<a href="editProfile.php">Edit Profile</a><br>';
-		echo '<a href="proposeProduct.php">Propose Product</a><br>';
-	}
-	// Assume ROLEID 1 corrosponds to Order Manager
-	else if ($_SESSION['ROLEID'] == '1') {
-		echo 'welcome Order Manager '.$_SESSION['NAME'].'<br>';
-		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="analyzeProduct.php">Analyze Product</a><br>';
-		echo '<a href="procureProduct.php">Procure Product</a><br>';
-		echo '<a href="clearOrders.php">Clear Orders</a><br>';
-	}
-	
-	// Assume ROLEID 2 is Customer Relationship Manager
-	else if ($_SESSION['ROLEID'] == '2') {
-		echo 'Welcome Customer Relationship Manager '.$_SESSION['NAME'].'<br>';
-		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="releaseOffer.php">Release Offer</a><br>';
-		echo '<a href="upgradeCustomer.php">Upgrade Customer</a><br>';
-	}
-	
-	// Assume ROLEID 3 is Product Manager
-	else if ($_SESSION['ROLEID'] == '3') {
-		echo 'Welcome Product Manager '.$_SESSION['NAME'].'<br>';
-		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="launchProduct.php">Launch Product</a><br>';
-		echo '<a href="retireProduct.php">Retire Product</a><br>';
-	}
-	
-	// Otherwise no login has been attempted
-	else {
-		printLoginForm();
-	}
-	
-	function printLoginForm() {
-		echo'	<form action="validateLogin.php" method="post">
-					Username: <input type="text" name="username"><br>
-					Password: <input type="password" name="password"><br>
-					<input type="submit" value="Submit">
-				</form>
-				<a href="register.php">Register</a>';	
-	}
-	
-	        
+
+include 'checkuser.php';
+
+?>
+
+
+</div>
+<div class="body-left">
+<div class="left-main-title"> Categories</div>
+<div class="left-topic-title"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title" style="padding-top:25px;"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title" style="padding-top:28px;"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title" style="padding-top:30px;"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title" style="padding-top:30px;"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title" style="padding-top:30px;"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+<div class="left-topic-title" style="padding-top:30px;"> Books, DVD&#8217;s &amp; Music</div>
+<div class="left-topic-desc"> CD&#8217;s, Magazine Subscriptions, 300: The Movie, &amp; more..</div>
+</div>
+</div>
+<div class="separator-main"> &nbsp;</div>
+<div class="footer">
+<div class="footer-text" style="padding-top:10px;margin-left:20px;"> <a href="http://www.free-css.com/" class="nav1">Home</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">Categories</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">User Guide</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">Reviews</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">Hot Deals</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">FAQ&#8217;s</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">Contact</a>&nbsp;&nbsp;<span style="color:#dbdbdb">|</span>&nbsp;&nbsp;<a href="http://www.free-css.com/" class="nav1">Privacy Policy</a></div>
+<div class="footer-text" style="padding-top:20px;margin-left:20px;"> Copyright &copy; 2003-2008 <a href="http://www.free-css.com/">www.My Template.com.</a> All Rights Reserved.
+<div class="desby">Designed By: <a href="http://www.elegant-templates.com">Elegant Web Templates</a></div>
+</div>
+</div>
+</center>
+</body>
+</html>
