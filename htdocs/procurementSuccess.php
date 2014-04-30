@@ -9,6 +9,8 @@
     </head>
     <body>
         <div> Procurement was successful!<br>
-        New procurement id: <?php echo $_GET["id"];?></div>
+            New procurement id: <?php echo $_GET["id"];?><br>
+            Click below to return home.<br>
+            <a href="index.php">Home</a></div></div>
     </body>
 </html>
