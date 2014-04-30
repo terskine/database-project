@@ -11,7 +11,7 @@
                 ".$_POST["validity"].",
                 ".$_POST["discount"].",
                 '".$_POST["description"]."')";
-    echo $query;          
+             
         $stid=oci_parse($conn, $query);
 	$result = oci_execute($stid);
         oci_close($conn);
