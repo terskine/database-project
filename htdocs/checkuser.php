@@ -38,7 +38,7 @@
 	{
 		echo 'welcome Order Manager '.$_SESSION['NAME'].'<br>';
 		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="analyzeProduct.php">Analyze Product</a><br>';
+		echo '<a href="analyzeProposal.php">Analyze Product</a><br>';
 		echo '<a href="procureProduct.php">Procure Product</a><br>';
 		echo '<a href="clearOrders.php">Clear Orders</a><br>';
 	}
