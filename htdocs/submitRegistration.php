@@ -1,5 +1,6 @@
 <?php
 	session_start();
+        include 'header.php';
 	$conn = oci_connect('SYSTEM', 'password', '//localhost/project');
         
         $query = "SELECT USERID FROM CUSTOMER WHERE USERID ='".$_POST["userID"]."'";
@@ -22,10 +23,13 @@
                         '".$_POST["email"]."',
                         'S',
                         ".$_POST["country"].")";
-	echo $query;	
+	
         $stid=oci_parse($conn, $query);
 	$result = oci_execute($stid);
         
-        oci_close($conn);	
-        header('Location: registrationSuccess.html');
-	exit;
+        oci_close($conn);	?>
+
+        <div>Registration Successful!<br>
+            Click below to return home and login.<br>
+            <a href="index.php">Home</a></div>
+<?php include 'footer.php'; ?>

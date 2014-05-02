@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'header.php';
 include './utilityFunctions.php';
 	$conn = oci_connect('SYSTEM', 'password', '//localhost/project');
         
@@ -27,12 +28,10 @@ include './utilityFunctions.php';
         $stid=oci_parse($conn, $query);
 	$result = oci_execute($stid);
         oci_close($conn);
-        tryLoginAs("CUSTOMER", $_POST["userID"], $_SESSION["PASSWORD"]);
-        header('Location: editSuccess.php');
-	exit;
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+        tryLoginAs("CUSTOMER", $_POST["userID"], $_SESSION["PASSWORD"]); ?>
+            <div>Edits Successful!<br>
+            Click below to return home<br>
+            <a href="index.php">Home</a></div>
+<?php include 'footer.php';?>
+
 

@@ -1,6 +1,7 @@
-<?php session_start();?>
+<?php session_start();
+include 'header.php';?>
 <form action="validateRetire.php" method="post">
-    <select name="product" required>
+    Product to Retire:<select name="product" required>
         <?php 
             $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
             $stid=oci_parse($conn, "SELECT PRODUCTID, NAME FROM PRODUCTS WHERE STATUS = 'A'");
@@ -13,5 +14,6 @@
     </select><br>
     <input type="submit" value="Submit">
 </form>
+<?php include 'footer.php';?>
 
 

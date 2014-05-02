@@ -1,5 +1,6 @@
 <?php session_start(); 
     include './utilityFunctions.php';
+    include 'header.php';
 if ($_SESSION["success"] == "false") {
     echo 'UserID exists! Please return home to login or choose a different UserID<br>';
     session_destroy();
@@ -36,3 +37,5 @@ if ($_SESSION["success"] == "false") {
 	</script>
 	
 </form>
+
+<?php include 'footer.php';?>

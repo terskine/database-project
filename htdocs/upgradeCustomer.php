@@ -1,5 +1,8 @@
 <?php session_start();
+
+include 'header.php';
 ?>
+
 <form action="validateUpgrade.php" method="post">
     Customer Type: <select name="customerType" required>
         <option value="S">S</option>
@@ -13,3 +16,7 @@
 </form>
 
 
+<?php 
+
+include 'footer.php';
+?>

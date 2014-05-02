@@ -1,5 +1,7 @@
 <?php session_start(); 
+include 'header.php';
     include './utilityFunctions.php';
+    
 if ($_SESSION["success"] == "false") {
     echo 'UserID exists! Please choose a different UserID<br>';
     session_destroy();
@@ -24,4 +26,6 @@ if ($_SESSION["success"] == "false") {
         }
 	?>
 </form>
+
+<?php include 'footer.php';?>
 

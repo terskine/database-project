@@ -1,5 +1,6 @@
 <?php session_start();
-    include './utilityFunctions.php'?>
+    include './utilityFunctions.php';
+    include 'header.php'?>
 
 <form name="offer" action="validateOffer.php" method="post">
     *Type: <select name="type" required>
@@ -17,3 +18,4 @@
 </form>
 
 
+<?php include 'footer.php';?>

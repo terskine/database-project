@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start(); 
+include 'header.php';?>
 <form action="validateProcurement.php" method="post">
     Product: <select name="product" required>
         <?php 
@@ -15,5 +16,6 @@
     <input type="submit" value="Submit">
     
 </form>
+<?php include 'footer.php';?>
 
 
