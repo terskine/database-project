@@ -19,6 +19,25 @@ function getCountries($selected=NULL) {
 
 }
 
+function getCategories($selected=NULL) {
+    echo '<select name="category" required>';
+ 
+        
+    $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
+    $stid=oci_parse($conn, "SELECT * FROM CATEGORY");
+    oci_execute($stid);
+    while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+        if ($row['CATEGORYID'] == $selected) {
+            echo "<option value=".$row['CATEGORYID']." selected>".$row['CATEGORYNAME']."</option>";
+        } else {
+            echo "<option value=".$row['CATEGORYID'].">".$row['CATEGORYNAME']."</option>";
+        }
+    }
+    oci_close($conn);
+    echo '</select>';
+
+}
+
 function tryLoginAs($userStr, $username, $password) {
                 $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
                 $query = "SELECT *
