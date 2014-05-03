@@ -1,3 +1,8 @@
+<?php 
+require_once 'config.php';
+include 'functions.php';
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,8 +20,8 @@
 <div class="menu">
 <ul class="solidblockmenu">
 <li><a href="index.php">Home</a></li>
-<li><a href="http://www.free-css.com/">Categories</a></li>
-<li><a href="http://www.free-css.com/">User Guide</a></li>
+<li><a href="checkout.php">Check Out</a></li>
+<li><a href="viewAllProducts.php">View Products</a></li>
 <li><a href="http://www.free-css.com/">Reviews</a></li>
 <li><a href="http://www.free-css.com/">Hot Deals</a></li>
 <li><a href="http://www.free-css.com/">FAQ's</a></li>
