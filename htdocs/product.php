@@ -27,6 +27,7 @@ if ($_POST['quantity'])
     echo "You have successfully placed an order! </br>";
     
     $_SESSION['cart'][$_SESSION['viewing_product_id']] = $_POST['quantity'];
+    changeProductStock($_SESSION['viewing_product_id'], $_POST['quantity'], 'sub');
 }
 
 /*

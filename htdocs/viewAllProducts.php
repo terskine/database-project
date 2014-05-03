@@ -6,9 +6,11 @@ include 'header.php';
 $statement = getAllProducts();
 
 echo '<table style="width:500px">';
-echo '<td><strong>'.Name .'</strong></td>';
-echo '<td><strong>'.Cost .'</strong></td>';
-echo '<td><strong>'.Stock .'</strong></td>';
+echo '<tr>';
+echo '<td><strong>Name</strong></td>';
+echo '<td><strong>Cost</strong></td>';
+echo '<td><strong>Stock</strong></td>';
+echo '</tr>';
 
 while($row = oci_fetch_array($statement, OCI_BOTH))
 {

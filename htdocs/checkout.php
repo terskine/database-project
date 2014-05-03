@@ -2,15 +2,28 @@
 session_start();
 include 'header.php';
 
-echo "<strong> Here are the items you have ordered. </strong></br>";
+if ($_GET['remove_me'])
+{
+    unset($_SESSION['cart'][$_GET['remove_me']]);
+    changeProductStock($_GET['remove_me'], $_GET['quantity'], 'add');
+}
 
-echo $_SESSION['cart']."</br>";
+echo "<strong> Here are the items you have ordered. </strong></br></br>";
 
 // echo '<pre>';
 // print_r($_SESSION['cart']);
 // echo '</pre>';
 
 $total_cost = 0;
+
+echo '<table style="width:500px">';
+echo '<tr>';
+echo '<td><strong>Name</strong></td>';
+echo '<td><strong>Cost</strong></td>';
+echo '<td><strong>Stock</strong></td>';
+echo '<td><strong>Total Payment</strong></td>';
+echo '<td><strong>Remove</strong></td>';
+echo '</tr>';
 
 foreach ($_SESSION['cart'] as $pid=>$quantity)
 {
@@ -19,14 +32,21 @@ foreach ($_SESSION['cart'] as $pid=>$quantity)
     $p_name = $product[3];
     $p_cost = $product[4];
     
-    echo $p_name . " ". $p_cost . " * " . $quantity. " = ". $p_cost*$quantity;
-    echo "</br>";
+    $remove_me = '<a href="checkout.php?remove_me='.$pid.'&quantity='.$quantity.'">Remove me</a>';
+    
+    echo '<tr>';
+    echo '<td>'.$p_name.'</td>';
+    echo '<td>'.$p_cost.'</td>';
+    echo '<td>'.$quantity.'</td>';
+    echo '<td>'.$p_cost*$quantity.'</td>';
+    echo '<td>'.$remove_me.'</td>';
+    echo '</tr>';
     
     $total_cost += $p_cost*$quantity;
-    
-    #echo "This is item: ".$key."</br>";
-    #echo "This is item: ".$_SESSION['cart'][1]."</br>";
 }
+
+echo "</table>";
+
 
 echo "</br><strong>The total cost is: </strong>".$total_cost;
 
