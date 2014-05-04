@@ -4,22 +4,6 @@
 
 
     session_start();
-    #$connection = oci_connect('maurice', 'admin', '//localhost/XE');
-
-
-    #$sql_text = "SELECT count(*) FROM FREQUENTS";
-    #$statement = oci_parse($connection, $sql_text);
-    
-    #oci_execute($statement);
-    
-    #$row = oci_fetch_array($statement);
-    
-    #echo "This is X: " . $row[0];
-    
-
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
 
 
 

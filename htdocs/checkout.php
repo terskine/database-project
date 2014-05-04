@@ -2,9 +2,6 @@
 session_start();
 include 'header.php';
 
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
 
 if ($_GET['remove_me'])
 {
