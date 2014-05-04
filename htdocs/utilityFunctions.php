@@ -1,10 +1,10 @@
 <?php
+require_once 'config.php';
 
 function getCountries($selected=NULL) {
     echo '<select name="country" required>';
  
-        
-    $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
+    $conn = $GLOBALS['db'];
     $stid=oci_parse($conn, "SELECT * FROM COUNTRY");
     oci_execute($stid);
     while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
@@ -20,11 +20,12 @@ function getCountries($selected=NULL) {
 }
 
 function tryLoginAs($userStr, $username, $password) {
-                $conn = oci_connect('SYSTEM', 'password', '//localhost/project');
+                $conn = $GLOBALS['db'];
                 $query = "SELECT *
 				FROM ".$userStr. 
 				" WHERE USERID = '".$username."' 
 					AND PASSWORD = '".$password."'";
+                echo "This is query: ".$query."</br>";
 		$stid=oci_parse($conn, $query);
 		oci_execute($stid);
 

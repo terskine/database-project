@@ -75,5 +75,29 @@ function changeProductStock($pid, $quantity, $action)
 
 }
 
+function placeOrder($cart, $customer_id, $offer_id = 'NULL', $ship_address, $amountpaid, $total_cost)
+{
+    $connection = $GLOBALS['db'];
+    
+    $sql_insert_order = "INSERT INTO ordertable (orderid, customerid, orderdate,
+                                                 offerid, status, shippingaddress, totalamount, amountpaid)
+                            VALUES (ORDERTABLE_PK.NEXTVAL, ".$customer_id.", CURRENT_TIMESTAMP, 
+                                     ".$offer_id.", 'P', '".$ship_address."', ".$amountpaid.", ".$total_cost.")";
+    
+    echo $sql_insert_order."</br>";
+    $statement = oci_parse($connection, $sql_insert_order);
+    
+    if (oci_execute($statement))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
+}
+
+ 
 
 ?>

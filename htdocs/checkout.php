@@ -2,6 +2,10 @@
 session_start();
 include 'header.php';
 
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
 if ($_GET['remove_me'])
 {
     unset($_SESSION['cart'][$_GET['remove_me']]);
@@ -9,10 +13,6 @@ if ($_GET['remove_me'])
 }
 
 echo "<strong> Here are the items you have ordered. </strong></br></br>";
-
-// echo '<pre>';
-// print_r($_SESSION['cart']);
-// echo '</pre>';
 
 $total_cost = 0;
 
@@ -43,6 +43,7 @@ foreach ($_SESSION['cart'] as $pid=>$quantity)
     echo '</tr>';
     
     $total_cost += $p_cost*$quantity;
+    $_SESSION['total_cost'] = $total_cost;
 }
 
 echo "</table>";
@@ -50,7 +51,12 @@ echo "</table>";
 
 echo "</br><strong>The total cost is: </strong>".$total_cost;
 
-
+if (!empty($_SESSION['cart']))
+{
+    echo '<form id="Order" action="order.php" method="post">';
+    echo '<input type="submit" value="Place Order" />';
+    echo '</form>';
+}
 
 include 'footer.php';
 ?>

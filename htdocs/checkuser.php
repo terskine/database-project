@@ -17,6 +17,10 @@
     #echo "This is X: " . $row[0];
     
 
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
 
 
 	if ($_SESSION['user'] == 'error')
@@ -28,7 +32,6 @@
 	{
 		echo 'welcome customer '.$_SESSION['NAME'].'<br>';
 		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="placeOrder.php">Place Order</a><br>';
 		echo '<a href="enrollCustomer.php">Enroll Customer</a><br>';
 		echo '<a href="editProfile.php">Edit Profile</a><br>';
 		echo '<a href="proposeProduct.php">Propose Product</a><br>';
