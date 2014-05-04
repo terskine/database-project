@@ -3,6 +3,24 @@
 session_start();
 include 'header.php';
 
+if ($_POST['quantity'])
+{
+    
+    $new_stock = changeProductStock($_SESSION['viewing_product_id'], $_POST['quantity'], 'sub');
+    
+    if ($new_stock != 0)
+    {
+        echo "You have successfully placed an order! </br></br>";
+        $_SESSION['cart'][$_SESSION['viewing_product_id']] = $new_stock;
+    }
+    else
+    {
+        echo "Sorry the product is out of stock!</br></br>";
+    }
+    
+    
+}
+
 if ($_GET['product_id'])
 {
     $product = getProductInfo($_GET['product_id']);
@@ -22,24 +40,6 @@ else if ($_SESSION['viewing_product_id'])
     $p_stock = $product[6];
 }
 
-if ($_POST['quantity'])
-{
-    echo "You have successfully placed an order! </br>";
-    
-    $_SESSION['cart'][$_SESSION['viewing_product_id']] = $_POST['quantity'];
-    changeProductStock($_SESSION['viewing_product_id'], $_POST['quantity'], 'sub');
-}
-
-/*
- * Get product page
- */
-
-// echo "MY SESSION: ";
-// echo "</br>";
-// echo "viewing: ".$_SESSION['viewing_product_id'];
-// echo "</br> ".$_SESSION['cart'][$_SESSION['viewing_product_id']];
-
-
 echo "<strong>Name: </strong>".$p_name;
 echo "</br>";
 echo "<strong>Cost: </strong>".$p_cost;
@@ -48,15 +48,17 @@ echo "<strong>Warrenty: ".$p_warrenty." months</strong>";
 echo "</br>";
 echo "<strong>".$p_stock." left in stock</strong>";
 
-?>
+if ($_SESSION['cart'][$_SESSION['viewing_product_id']])
+{
+    echo "</br>Remove product in cart to adjust quantity you want to purcahse.</br>";
+}
+else
+{
+    echo '<form id="Product" action="product.php" method="post">';
+    echo 'Quantity: <input type="text" name="quantity" />';
+    echo '<input type="submit" value="Add To Cart." />';
+    echo '</form>';
+}
 
-<form id="Product" action="product.php" method="post"> 
-    Quantity: <input type="text" name="quantity" /> 
-    <input type="submit" value="Add To Cart." /> 
-</form>
-
-<?php
-    
 include 'footer.php';
-        
 ?>
