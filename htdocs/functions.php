@@ -33,35 +33,46 @@ function changeProductStock($pid, $quantity, $action)
     $row = oci_fetch_array($statement, OCI_BOTH);
     
     
+    
+    
     if ($action == 'add')
     {
         $new_stock = $row[0] + $quantity;
-        $sql_update = "UPDATE products SET stock = ".$new_stock." WHERE product_id = ".$pid;
-        $statement = oci_parse($connection, $sql_text);
+        $sql_update = "UPDATE products SET stock = ".$new_stock." WHERE productid = ".$pid;
+        $statement = oci_parse($connection, $sql_update);
         oci_execute($statement);
+        
+        return $new_stock;
     }
     elseif ($action == 'sub')
     {
+        if ($row[0] == 0)
+        {
+            return 0;
+        }
+        
         $new_stock = $row[0] - $quantity;
         
         if ($new_stock < 0)
         {
-            $sql_update = "UPDATE products SET stock = 0 WHERE product_id = ".$pid;
-            $statement = oci_parse($connection, $sql_text);
+            $sql_update = "UPDATE products SET stock = 0 WHERE productid = ".$pid;
+            
+            $statement = oci_parse($connection, $sql_update);
             oci_execute($statement);
+            
+            return $row[0];
         }
         else
         {
-            $sql_update = "UPDATE products SET stock = ".$new_stock." WHERE product_id = ".$pid;
-            $statement = oci_parse($connection, $sql_text);
+            $sql_update = "UPDATE products SET stock = ".$new_stock." WHERE productid = ".$pid;
+            $statement = oci_parse($connection, $sql_update);
             oci_execute($statement);
+            
+            return $quantity;
         }
         
     }
-    else
-    {
-        
-    }
+
 }
 
 
