@@ -23,6 +23,26 @@ function getAllProducts()
     return $statement;
 }
 
+function getAllOrders()
+{
+    $connection = $GLOBALS['db'];
+    $sql_text = "SELECT * FROM ordertable";
+    $statement = oci_parse($connection, $sql_text);
+    oci_execute($statement);
+    
+    return $statement;
+}
+
+function getOrder($order_id)
+{
+    $connection = $GLOBALS['db'];
+    $sql_text = "SELECT i.itemid,i.orderid,p.name,i.quantity,p.stock,p.reorderlevel FROM item i LEFT JOIN products p ON p.productid = i.productid WHERE i.orderid = ".$order_id;
+    $statement = oci_parse($connection, $sql_text);
+    oci_execute($statement);
+
+    return $statement;
+}
+
 function changeProductStock($pid, $quantity, $action)
 {
     $new_stock = 0;
@@ -84,20 +104,43 @@ function placeOrder($cart, $customer_id, $offer_id = 'NULL', $ship_address, $amo
                             VALUES (ORDERTABLE_PK.NEXTVAL, ".$customer_id.", CURRENT_TIMESTAMP, 
                                      ".$offer_id.", 'P', '".$ship_address."', ".$amountpaid.", ".$total_cost.")";
     
-    echo $sql_insert_order."</br>";
     $statement = oci_parse($connection, $sql_insert_order);
     
     if (oci_execute($statement))
     {
-        return true;
     }
     else
     {
         return false;
     }
     
+    $sql_text = 'select orderid from ordertable where ROWNUM = 1 order by orderid desc';
+    $statement = oci_parse($connection, $sql_text);
+    oci_execute($statement);
+    $row = oci_fetch_array($statement, OCI_BOTH);
+    $order_id = $row[0];
+    
+    foreach ($cart as $pid=>$quantity)
+    {
+        $sql_insert_item = "INSERT INTO item (itemid, orderid, productid, quantity)
+                            VALUES (ITEM_PK.NEXTVAL, ".$order_id.", ".$pid.", ".$quantity.")";
+        
+        $statement = oci_parse($connection, $sql_insert_item);
+        oci_execute($statement);
+    }
+    
+    return true;
+    
 }
 
- 
+
+function clearOrder($order_id)
+{
+    $connection = $GLOBALS['db'];
+    $sql_text = "UPDATE ordertable SET status = 'C' WHERE orderid = ".$order_id;
+    echo "this is text: ".$sql_text;
+    $statement = oci_parse($connection, $sql_text);
+    oci_execute($statement);
+}
 
 ?>
