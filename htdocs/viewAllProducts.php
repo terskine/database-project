@@ -15,7 +15,7 @@ echo '</tr>';
 while($row = oci_fetch_array($statement, OCI_BOTH))
 {
     echo '<tr>';
-    $pid = $row[1];
+    $pid = $row[0];
     $p_name = $row[3];
     $p_cost = $row[4];
     $p_warrenty = $row[5];
