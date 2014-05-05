@@ -27,7 +27,7 @@
 		echo '<a href="logout.php">Logout</a><br>';
 		echo '<a href="analyzeProposal.php">Analyze Product</a><br>';
 		echo '<a href="procureProduct.php">Procure Product</a><br>';
-		echo '<a href="clearOrders.php">Clear Orders</a><br>';
+		echo '<a href="viewAllOrders.php">Clear Orders</a><br>';
 	}
 	
 	// Assume ROLEID 2 is Customer Relationship Manager
