@@ -12,6 +12,7 @@ if ($_GET['remove_me'])
 echo "<strong> Here are the items you have ordered. </strong></br></br>";
 
 $total_cost = 0;
+$amount_paid = 0;
 
 echo '<table style="width:500px">';
 echo '<tr>';
@@ -40,13 +41,47 @@ foreach ($_SESSION['cart'] as $pid=>$quantity)
     echo '</tr>';
     
     $total_cost += $p_cost*$quantity;
-    $_SESSION['total_cost'] = $total_cost;
+    
 }
 
+$_SESSION['total_cost'] = $total_cost;
+$amount_paid = $total_cost;
+
 echo "</table>";
+echo "</br></br>";
+
+$statement = getAllOffers($_SESSION['COUNTRYID'], $_SESSION['TYPE']);
+
+if ($row = oci_fetch_array($statement, OCI_BOTH)) {
+    echo '<table style="width:500px">';
+    echo '<tr>';
+    echo '<td><strong>Discount</strong></td>';
+    echo '<td><strong>Description</strong></td>';
+    echo '</tr>';
+
+    do
+        {
+            echo '<tr>';
+            $discount = $row[6];
+            $description = $row[7];
 
 
-echo "</br><strong>The total cost is: </strong>".$total_cost;
+            echo '<td>'.$discount .'</td>';
+            echo '<td>'.$description .'</td>';
+
+            $amount_paid *= ($discount / 100);
+
+            echo '</tr>';
+        } while ($row = oci_fetch_array($statement, OCI_BOTH));
+
+    echo "</table>";
+    echo "</br></br>";
+
+}
+
+
+echo "</br><strong>The total cost before discounts: </strong>".$total_cost;
+echo "</br><strong>The total amount to be paid is: </strong>".$amount_paid;
 
 if (!empty($_SESSION['cart']))
 {

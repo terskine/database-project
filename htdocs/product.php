@@ -1,5 +1,7 @@
 <?php
-
+// Bug when trying to order more than in stock
+// Products page shows retired products
+// Remove this query is
 session_start();
 include 'header.php';
 

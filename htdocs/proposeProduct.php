@@ -8,7 +8,7 @@ if ($_GET["err"] == "true") {
 ?>
 
 
-
+Propose Product<br>
 <form action="validateProposal.php" method="post">
     Product Name: <input type="text" name="name" maxlength="25" required><br>
     Category: <?php    getCategories(); ?><br>

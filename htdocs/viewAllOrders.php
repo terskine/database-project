@@ -10,11 +10,11 @@ if ($_GET['clear_order'])
 
 $statement = getAllOrders();
 
-
+echo 'Clear Orders<br>';
 echo '<table style="width:500px">';
 echo '<tr>';
 echo '<td><strong>Order ID</strong></td>';
-echo '<td><strong>Name</strong></td>';
+echo '<td><strong>Customer ID</strong></td>';
 echo '<td><strong>Order Date</strong></td>';
 echo '<td><strong>Total Amount</strong></td>';
 echo '<td><strong>Amount Paid</strong></td>';

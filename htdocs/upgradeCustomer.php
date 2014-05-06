@@ -2,7 +2,7 @@
 
 include 'header.php';
 ?>
-
+Upgrade Customer<br>
 <form action="validateUpgrade.php" method="post">
     Customer Type: <select name="customerType" required>
         <option value="S">S</option>

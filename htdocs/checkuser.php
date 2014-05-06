@@ -16,7 +16,6 @@
 	{
 		echo 'welcome customer '.$_SESSION['NAME'].'<br>';
 		echo '<a href="logout.php">Logout</a><br>';
-		echo '<a href="enrollCustomer.php">Enroll Customer</a><br>';
 		echo '<a href="editProfile.php">Edit Profile</a><br>';
 		echo '<a href="proposeProduct.php">Propose Product</a><br>';
 	}

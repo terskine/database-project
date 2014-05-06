@@ -16,7 +16,7 @@ function getProductInfo($pid)
 function getAllProducts()
 {
     $connection = $GLOBALS['db'];
-    $sql_text = "SELECT * FROM products";
+    $sql_text = "SELECT * FROM products WHERE STATUS='A'";
     $statement = oci_parse($connection, $sql_text);
     oci_execute($statement);
     
@@ -124,7 +124,7 @@ function placeOrder($cart, $customer_id, $offer_id = 'NULL', $ship_address, $amo
     {
         $sql_insert_item = "INSERT INTO item (itemid, orderid, productid, quantity)
                             VALUES (ITEM_PK.NEXTVAL, ".$order_id.", ".$pid.", ".$quantity.")";
-        
+        echo "THis is sql: ".$sql_insert_item;
         $statement = oci_parse($connection, $sql_insert_item);
         oci_execute($statement);
     }
@@ -138,9 +138,20 @@ function clearOrder($order_id)
 {
     $connection = $GLOBALS['db'];
     $sql_text = "UPDATE ordertable SET status = 'C' WHERE orderid = ".$order_id;
-    echo "this is text: ".$sql_text;
+    //echo "this is text: ".$sql_text;
     $statement = oci_parse($connection, $sql_text);
     oci_execute($statement);
+}
+
+function getAllOffers($country_id, $type)
+{
+    $connection = $GLOBALS['db'];
+    
+    $sql_text = "SELECT * FROM offer WHERE countryid = ".$country_id." AND type = '".$type."' AND launchdate + validity > CURRENT_TIMESTAMP AND launchdate < CURRENT_TIMESTAMP";
+    $statement = oci_parse($connection, $sql_text);
+    oci_execute($statement);
+    
+    return $statement;
 }
 
 ?>

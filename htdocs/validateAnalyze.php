@@ -21,8 +21,8 @@ while($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
         continue;
     }
     
-    $stid=oci_parse($conn, $query);
-    oci_execute($stid);
+    $up=oci_parse($conn, $query);
+    oci_execute($up);
     
 }
 

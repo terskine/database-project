@@ -14,7 +14,7 @@ if ($_GET['order_id'])
 {
     $statement = getOrder($_GET['order_id']);
     $clear_flag = 1;
-    
+    echo 'Clear Orders<br>';
     echo '<table style="width:500px">';
     echo '<tr>';
     echo '<td><strong>Item ID</strong></td>';

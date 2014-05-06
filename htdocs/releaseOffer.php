@@ -1,7 +1,7 @@
 <?php session_start();
     include './utilityFunctions.php';
     include 'header.php'?>
-
+Release Offer<br>
 <form name="offer" action="validateOffer.php" method="post">
     *Type: <select name="type" required>
         <option value="S">S</option>

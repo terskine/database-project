@@ -17,7 +17,7 @@
          } else {
              $_SESSION['user'] = 'error';
          }
-	#header('Location: index.php');
+	header('Location: index.php');
 	exit;
 	
  

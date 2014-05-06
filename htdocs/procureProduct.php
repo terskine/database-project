@@ -1,5 +1,6 @@
 <?php session_start(); 
 include 'header.php';?>
+Procure Product<br>
 <form action="validateProcurement.php" method="post">
     Product: <select name="product" required>
         <?php 

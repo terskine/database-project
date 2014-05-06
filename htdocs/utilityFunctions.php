@@ -44,7 +44,7 @@ function tryLoginAs($userStr, $username, $password) {
 				FROM ".$userStr. 
 				" WHERE USERID = '".$username."' 
 					AND PASSWORD = '".$password."'";
-                echo "This is query: ".$query."</br>";
+                //echo "This is query: ".$query."</br>";
 		$stid=oci_parse($conn, $query);
 		oci_execute($stid);
 
