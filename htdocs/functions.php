@@ -102,7 +102,7 @@ function placeOrder($cart, $customer_id, $offer_id = 'NULL', $ship_address, $amo
     $sql_insert_order = "INSERT INTO ordertable (orderid, customerid, orderdate,
                                                  offerid, status, shippingaddress, totalamount, amountpaid)
                             VALUES (ORDERTABLE_PK.NEXTVAL, ".$customer_id.", CURRENT_TIMESTAMP, 
-                                     ".$offer_id.", 'P', '".$ship_address."', ".$amountpaid.", ".$total_cost.")";
+                                     ".$offer_id.", 'P', '".$ship_address."', ".$total_cost.", ".$amountpaid.")";
     
     $statement = oci_parse($connection, $sql_insert_order);
     
@@ -124,7 +124,7 @@ function placeOrder($cart, $customer_id, $offer_id = 'NULL', $ship_address, $amo
     {
         $sql_insert_item = "INSERT INTO item (itemid, orderid, productid, quantity)
                             VALUES (ITEM_PK.NEXTVAL, ".$order_id.", ".$pid.", ".$quantity.")";
-        echo "THis is sql: ".$sql_insert_item;
+        //echo "THis is sql: ".$sql_insert_item;
         $statement = oci_parse($connection, $sql_insert_item);
         oci_execute($statement);
     }

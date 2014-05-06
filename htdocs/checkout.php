@@ -76,7 +76,8 @@ if ($row = oci_fetch_array($statement, OCI_BOTH)) {
 
     echo "</table>";
     echo "</br></br>";
-
+    
+    $_SESSION['amount_paid'] = $amount_paid;
 }
 
 
